@@ -1,0 +1,24 @@
+{
+"name": "indxio-twatter",
+"version": "0.1.1",
+"description": "indxio twatterer",
+"author": "Satoshi Nomofomo <snomofomo@gmail.com>",
+"main": "app.js",
+"repository": {
+"type": "git",
+"url": "https://gitlab.com/"
+},
+"bugs": {
+"url": "http://nomofomo.net"
+},
+"keywords": [
+"indxio"
+],
+"dependencies": {
+"mysql": "^2.12.0",
+"twitter": "^1.4.0"
+},
+"devDependencies": { },
+"private": true,
+"license": "UNLICENSED"
+}
