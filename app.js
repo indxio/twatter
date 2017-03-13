@@ -62,7 +62,7 @@ function genTweet(hr,cb){
   });
 }
 
-genTweet(1,function(tweet){
+genTweet(1,function(tweet0){
   client.post('statuses/update', {status: "Thanks for being patient through the downtime. We are back!"},  function(error, tweet, response) {
     if(error){console.log(error)}else{
       console.log('twat fired');
@@ -77,8 +77,8 @@ setInterval(function(){
   var csc = new Date().getUTCSeconds();
   process.stdout.write(chr+':'+cmn+':'+csc+'\r');
   if(cmn === 0 && chr % 2 === 0  && twatted === 0){
-    genTweet(chr,function(tweet){
-      client.post('statuses/update', {status: tweet},  function(error, tweet, response) {
+    genTweet(chr,function(tweet0){
+      client.post('statuses/update', {status: tweet0},  function(error, tweet, response) {
         if(error){console.log(error)}else{
           // console.log(tweet);  // Tweet body.
           // console.log(response);  // Raw response object.
