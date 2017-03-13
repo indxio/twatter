@@ -69,6 +69,12 @@ genTweet(1,function(tweet0){
       console.log(tweet);
     }
   });
+  client.post('statuses/update', {status: tweet0},  function(error, tweet, response) {
+    if(error){console.log(error)}else{
+      console.log('twat fired');
+      console.log(tweet);
+    }
+  });
 });
 var twatted = 0;
 setInterval(function(){
