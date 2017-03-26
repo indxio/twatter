@@ -64,7 +64,7 @@ setInterval(function(){
     genTweet(chr,function(tweet0){
       client.post('statuses/update', {status: tweet0},  function(error, tweet, response) {
         if(error){console.log(error)}else{
-          console.log(chr+':'+cmn+'| twat fired');
+          console.log('twat fired');
           console.log(tweet.text);
         }
       });
