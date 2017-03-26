@@ -1,12 +1,7 @@
 var mysql = require('mysql');
 var twitter = require('twitter');
 var creds = require('./creds');
-var devclient = new twitter({
-  consumer_key: creds.twit.dev.consumer_key,
-  consumer_secret: creds.twit.dev.consumer_secret,
-  access_token_key: creds.twit.dev.access_token_key,
-  access_token_secret: creds.twit.dev.access_token_secret
-});
+
 var client = new twitter({
   consumer_key: creds.twit.pro.consumer_key,
   consumer_secret: creds.twit.pro.consumer_secret,
@@ -62,39 +57,17 @@ function genTweet(hr,cb){
   });
 }
 
-genTweet(1,function(tweet0){
-  client.post('statuses/update', {status: "Thanks for being patient through the downtime. We are back!"},  function(error, tweet, response) {
-    if(error){console.log(error)}else{
-      console.log('twat fired');
-      console.log(tweet);
-    }
-  });
-  client.post('statuses/update', {status: tweet0},  function(error, tweet, response) {
-    if(error){console.log(error)}else{
-      console.log('twat fired');
-      console.log(tweet);
-    }
-  });
-});
 var twatted = 0;
 setInterval(function(){
   var chr = new Date().getUTCHours();
-  var cmn = new Date().getUTCMinutes();
-  var csc = new Date().getUTCSeconds();
-  process.stdout.write(chr+':'+cmn+':'+csc+'\r');
-  if(cmn === 0 && chr % 2 === 0  && twatted === 0){
+  if( chr % 2 == 0){
     genTweet(chr,function(tweet0){
       client.post('statuses/update', {status: tweet0},  function(error, tweet, response) {
         if(error){console.log(error)}else{
-          // console.log(tweet);  // Tweet body.
-          // console.log(response);  // Raw response object.
-          console.log(chr+':'+cmn+':');
-          console.log('twat fired');
-          console.log(tweet);
-          twatted = 1;
+          console.log(chr+':'+cmn+'| twat fired');
+          console.log(tweet.text);
         }
       });
     });
   }
-  if(cmn === 1 && chr % 2 === 0 && twatted === 1){ twatted = 0;}
-}, 1000);
+}, 60 * 60 * 1000);
