@@ -60,7 +60,8 @@ function genTweet(hr,cb){
 var twatted = 0;
 setInterval(function(){
   var chr = new Date().getUTCHours();
-  if( chr % 2 == 0){
+  var chm = new Date().getUTCMinutes();
+  if( chr % 2 == 0 && chm == 0){
     genTweet(chr,function(tweet0){
       client.post('statuses/update', {status: tweet0},  function(error, tweet, response) {
         if(error){console.log(error)}else{
@@ -69,5 +70,4 @@ setInterval(function(){
         }
       });
     });
-  }
-}, 60 * 60 * 1000);
+  };
